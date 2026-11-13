@@ -15,7 +15,7 @@ void free_tab(char **plateau)
     free(plateau);
 }
 
-char** creation_plateau(){
+char **creation_plateau(){
     char ** plateau = malloc(size * sizeof(char*));
     int i = 0;
     int j = 0; 
@@ -45,4 +45,18 @@ void afficher_plateau(char **plateau){
         i++;
     }
     printf("\n");
+}
+
+char **tour_joueur(char** plateau){
+    int choix;
+
+    printf("Choisissez où jouer :\n");
+    scanf("%d", &choix);
+    
+    int ligne = (choix - 1) / 3;
+    int colonne = (choix - 1) % 3;
+    plateau[ligne][colonne] = 'x';
+    afficher_plateau(plateau);
+
+    return plateau;
 }
