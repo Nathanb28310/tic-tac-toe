@@ -32,3 +32,17 @@ char** creation_plateau(){
     }
     return plateau;
 }
+
+void afficher_plateau(char **plateau){
+    system("clear");
+    int i = 0;
+    while (i < size)
+    {
+        printf(" %c | %c | %c \n", plateau[i][0], plateau[i][1], plateau[i][2]);
+        if (i < 2) {
+            printf("-----------\n");
+        }
+        i++;
+    }
+    printf("\n");
+}
