@@ -12,13 +12,13 @@ int main(){
     {   
         if (tour == 0)
         {
-            plateau = tour_joueur(plateau);
-            victoire = verification_victoire(plateau, 'x');
+            tour_joueur(plateau);
+            victoire = verification_victoire(plateau, 'X');
             tour = 1;
         }
         else{
-            plateau = tour_bot(plateau);
-            victoire = verification_victoire(plateau, 'o');
+            tour_bot(plateau);
+            victoire = verification_victoire(plateau, 'O');
             tour = 0;
         }
         egalite = verification_egalite(plateau);

@@ -86,29 +86,57 @@ bool verification_egalite(char** plateau){
     return egalite;   
 }
 
-char **tour_joueur(char** plateau){
+int tour_joueur(char** plateau)
+{
     int choix;
+    bool verification = false;
+    
+    while (verification == false)
+    {   
+        printf("Choisissez où jouer : \n");
+        int ret = scanf("%d", &choix);
+        if (ret == EOF){
+            printf("\nFin du programme. Au revoir.\n");
+            return 0;
+        }
+        if (ret != 1) {
+            printf("Erreur : Veuillez saisir un nombre entier\n");
+            int c = getchar();
+            while (c != '\n' && c != EOF) {
+                    c = getchar();
+            };
+            continue;
+        }
 
-    printf("Choisissez où jouer :\n");
-    scanf("%d", &choix);
+        if (choix < 0 || choix > 8) {
+            printf("Position invalide (doit être entre 0 et 8)\n");
+            continue;
+        }
 
-    int ligne = (choix - 1) / 3;
-    int colonne = (choix - 1) % 3;
-    plateau[ligne][colonne] = 'x';
+        int ligne = choix / 3;
+        int colonne = choix % 3;
+        if (plateau[ligne][colonne] == 'X' || plateau[ligne][colonne] == 'O')
+        {
+            printf("Cette case est déjà occupée\n");
+            continue;
+        }
+        plateau[ligne][colonne] = 'X';
+        verification = true;
+    }
     afficher_plateau(plateau);
+    return 0;
+    }
 
-    return plateau;
-}
 
 char **tour_bot(char** plateau){
     int i = 0;
     int j = 0;
     bool choix = false;
     while (i < size && choix == false) {
-        j = 0; // Réinitialisation indispensable pour chaque nouvelle ligne
+        j = 0;
         while (j < size && choix == false) {
             if (plateau[i][j] == ' ') {
-                plateau[i][j] = 'o';
+                plateau[i][j] = 'O';
                 choix = true;
             }
             j++;
