@@ -128,7 +128,7 @@ int tour_joueur(char** plateau)
     }
 
 
-char **tour_bot(char** plateau){
+void **tour_bot(char** plateau){
     int i = 0;
     int j = 0;
     bool choix = false;
@@ -144,5 +144,4 @@ char **tour_bot(char** plateau){
         i++;
     }
     afficher_plateau(plateau);
-    return plateau;
 }
