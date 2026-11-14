@@ -1,6 +1,7 @@
 #include "tic-tac-toe.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 int main(){
     char **plateau = creation_plateau();
@@ -22,18 +23,19 @@ int main(){
             tour = 0;
         }
         egalite = verification_egalite(plateau);
+        sleep(1);
     }
     if (victoire == true && tour == 1)
     {
-        printf("C'est gagné\n");
+        printf("C'est gagné!\n");
     }
     else if (victoire == true && tour == 0)
     {
-        printf("C'est perdu\n");
+        printf("C'est perdu!\n");
     }
     else
     {
-        printf("Match nul\n");
+        printf("Match nul!\n");
     }
     free_tab(plateau);
     return 0;

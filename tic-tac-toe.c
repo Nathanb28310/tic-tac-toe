@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 int size = 3;
 
@@ -35,7 +36,7 @@ char **creation_plateau(){
 }
 
 void afficher_plateau(char **plateau){
-    system("clear");
+    printf("\n");
     int i = 0;
     while (i < size)
     {
@@ -123,6 +124,7 @@ int tour_joueur(char** plateau)
         plateau[ligne][colonne] = 'X';
         verification = true;
     }
+    sleep(1);
     afficher_plateau(plateau);
     return 0;
     }
@@ -143,5 +145,6 @@ void **tour_bot(char** plateau){
         }
         i++;
     }
+    system("clear");
     afficher_plateau(plateau);
 }
