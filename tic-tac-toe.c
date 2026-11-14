@@ -8,7 +8,7 @@ void free_tab(char **plateau)
 {
     int i = 0;
 
-    while (i < 3)
+    while (i < size)
     {
         free(plateau[i]);
         i = i + 1;
@@ -48,6 +48,25 @@ void afficher_plateau(char **plateau){
     printf("\n");
 }
 
+bool verification_victoire(char** plateau, char symbole){
+    int i = 0;
+    bool victoire = false;
+    while (i < size)
+    {
+        if (plateau[i][0] == symbole && plateau[i][1] == symbole && plateau[i][2] == symbole || plateau[0][i] == symbole && plateau[1][i] == symbole && plateau[2][i] == symbole)
+        {
+            victoire = true;
+        }
+        i++;
+    }
+    if (plateau[0][0] == symbole && plateau[1][1] == symbole && plateau[2][2] == symbole || plateau[0][2] == symbole && plateau[1][1] == symbole && plateau[2][0] == symbole)
+    {
+            victoire = true;
+    }
+    return victoire;
+    
+}
+
 char **tour_joueur(char** plateau){
     int choix;
 
@@ -66,22 +85,16 @@ char **tour_bot(char** plateau){
     int i = 0;
     int j = 0;
     bool choix = false;
-    while (choix == false)
-    {
-        while (i < size && choix == false)
-        {
-            j = 0;
-            while (j < size && choix == false)
-            {
-                if (plateau[i][j] == ' ')
-                {
-                    plateau[i][j] = 'o';
-                    choix = true;
-                }
-                j++;
+    while (i < size && choix == false) {
+        j = 0; // Réinitialisation indispensable pour chaque nouvelle ligne
+        while (j < size && choix == false) {
+            if (plateau[i][j] == ' ') {
+                plateau[i][j] = 'o';
+                choix = true;
             }
-            i++;
+            j++;
         }
+        i++;
     }
     afficher_plateau(plateau);
     return plateau;
