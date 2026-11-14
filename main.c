@@ -6,6 +6,7 @@ int main(){
     char **plateau = creation_plateau();
     afficher_plateau(plateau);
     plateau = tour_joueur(plateau);
+    plateau = tour_bot(plateau);
     free_tab(plateau);
     return 0;
 }

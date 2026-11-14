@@ -5,5 +5,6 @@ void free_tab(char **plateau);
 char ** creation_plateau();
 void afficher_plateau(char **plateau);
 char ** tour_joueur(char** plateau);
+char ** tour_bot(char** plateau);
 
 #endif
