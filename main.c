@@ -25,6 +25,7 @@ int main(){
         egalite = verification_egalite(plateau);
         sleep(1);
     }
+    system("clear");
     if (victoire == true && tour == 1)
     {
         printf("C'est gagné!\n");
