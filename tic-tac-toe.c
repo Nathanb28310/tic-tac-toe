@@ -51,7 +51,7 @@ void afficher_plateau(char **plateau){
 bool verification_victoire(char** plateau, char symbole){
     int i = 0;
     bool victoire = false;
-    while (i < size)
+    while (i < size && victoire == false)
     {
         if (plateau[i][0] == symbole && plateau[i][1] == symbole && plateau[i][2] == symbole || plateau[0][i] == symbole && plateau[1][i] == symbole && plateau[2][i] == symbole)
         {
@@ -64,7 +64,26 @@ bool verification_victoire(char** plateau, char symbole){
             victoire = true;
     }
     return victoire;
-    
+}
+
+bool verification_egalite(char** plateau){
+    int i = 0;
+    int j = 0;
+    bool egalite = true;
+    while (i < size && egalite == true)
+    {
+        j = 0;
+        while (j < size && egalite == true)
+        {
+            if (plateau[i][j] == ' ')
+            {
+                egalite = false;
+            }
+            j++;
+        }
+        i++;
+    }   
+    return egalite;   
 }
 
 char **tour_joueur(char** plateau){

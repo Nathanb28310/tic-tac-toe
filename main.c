@@ -6,8 +6,9 @@ int main(){
     char **plateau = creation_plateau();
     int tour = 0;
     bool victoire = false;
+    bool egalite = false;
     afficher_plateau(plateau);
-    while (victoire == false)
+    while (victoire == false && egalite == false)
     {   
         if (tour == 0)
         {
@@ -20,14 +21,19 @@ int main(){
             victoire = verification_victoire(plateau, 'o');
             tour = 0;
         }
+        egalite = verification_egalite(plateau);
     }
-    if (tour == 1)
+    if (victoire == true && tour == 1)
     {
         printf("C'est gagné\n");
     }
-    else if (tour == 0)
+    else if (victoire == true && tour == 0)
     {
         printf("C'est perdu\n");
+    }
+    else
+    {
+        printf("Match nul\n");
     }
     free_tab(plateau);
     return 0;

@@ -6,6 +6,7 @@ void free_tab(char **plateau);
 char ** creation_plateau();
 void afficher_plateau(char **plateau);
 bool verification_victoire(char** plateau, char symbole);
+bool verification_egalite(char** plateau);
 char ** tour_joueur(char** plateau);
 char **tour_bot(char** plateau);
 
