@@ -174,7 +174,7 @@ int mode_multi(){
             printf("Saisie invalide\n");
             continue;
         }
-
-    return multi;
+        verification = true;
     }
+    return multi;
 }
