@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 int size = 3; // taille du plateau
+int multi;
 
 void free_tab(char **plateau) // libération de la mémoire allouée pour le plateau
 {
@@ -87,14 +88,14 @@ bool verification_egalite(char** plateau){ // vérifie si il y a égalité, en r
     return egalite;   
 }
 
-int tour_joueur(char** plateau) // gère le tour du joueur et vérifie les entrées du joueur pour éviter la triche
+int tour_joueur(char** plateau, char symbole) // gère le tour du joueur et vérifie les entrées du joueur pour éviter la triche
 {
     int choix;
     bool verification = false;
     
     while (verification == false)
     {   
-        printf("Choisissez où jouer : \n");  
+        printf("Choisissez où jouer (%c): \n", symbole);  
         int ret = scanf("%d", &choix);
         if (ret == EOF){
             printf("\nFin du programme. Au revoir.\n");
@@ -104,7 +105,7 @@ int tour_joueur(char** plateau) // gère le tour du joueur et vérifie les entr�
             printf("Erreur : Veuillez saisir un nombre entier\n");
             int c = getchar();
             while (c != '\n' && c != EOF) {
-                    c = getchar();
+                c = getchar();
             };
             continue;
         }
@@ -121,7 +122,7 @@ int tour_joueur(char** plateau) // gère le tour du joueur et vérifie les entr�
             printf("Cette case est déjà occupée\n");
             continue;
         }
-        plateau[ligne][colonne] = 'X'; // place le symbole
+        plateau[ligne][colonne] = symbole; // place le symbole
         verification = true;
     }
     sleep(1); // pause d'une seconde pour l'affichage
@@ -147,4 +148,33 @@ void tour_bot(char** plateau){ // gère le tour de l'ordinateur en plaçant son 
     }
     system("clear"); // permet de rafraichir le terminal
     afficher_plateau(plateau);
+}
+
+int mode_multi(){
+    bool verification = false;
+    
+    while (verification == false)
+    {   
+        printf("Voulez vous jouer en mode 2 joueur ? si oui mettez 2, sinon mettez 1 : \n");  
+        int ret = scanf("%d", &multi);
+        if (ret == EOF){
+            printf("\nFin du programme. Au revoir.\n");
+            exit(0);
+        }
+        if (ret != 1) {  // vérifie si l'entrée n'est pas un entier
+            printf("Erreur : Veuillez saisir un nombre entier\n");
+            int c = getchar();
+            while (c != '\n' && c != EOF) {
+                c = getchar();
+            };
+            continue;
+        }
+
+        if (multi != 1 && multi != 2) {
+            printf("Saisie invalide\n");
+            continue;
+        }
+
+    return multi;
+    }
 }
