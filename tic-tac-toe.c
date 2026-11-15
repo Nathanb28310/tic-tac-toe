@@ -98,6 +98,7 @@ int tour_joueur(char** plateau, char symbole) // gère le tour du joueur et vér
         printf("Choisissez où jouer (%c): \n", symbole);  
         int ret = scanf("%d", &choix);
         if (ret == EOF){
+            free_tab(plateau);
             printf("\nFin du programme. Au revoir.\n");
             exit(0);
         }
@@ -150,7 +151,7 @@ void tour_bot(char** plateau){ // gère le tour de l'ordinateur en plaçant son 
     afficher_plateau(plateau);
 }
 
-int mode_multi(){
+int mode_multi(){ // demande si l'utilisateur veut jouer en multijoueur ou pas 
     bool verification = false;
     
     while (verification == false)
