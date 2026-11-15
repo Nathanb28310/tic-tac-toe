@@ -9,6 +9,6 @@ bool verification_victoire(char** plateau, char symbole);
 bool verification_egalite(char** plateau);
 int tour_joueur(char** plateau, char symbole);
 void tour_bot(char** plateau);
-int mode_multi();
+int mode_multi(char** plateau);
 
 #endif

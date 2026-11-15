@@ -151,7 +151,7 @@ void tour_bot(char** plateau){ // gère le tour de l'ordinateur en plaçant son 
     afficher_plateau(plateau);
 }
 
-int mode_multi(){ // demande si l'utilisateur veut jouer en multijoueur ou pas 
+int mode_multi(char** plateau){ // demande si l'utilisateur veut jouer en multijoueur ou pas 
     bool verification = false;
     
     while (verification == false)
@@ -159,6 +159,7 @@ int mode_multi(){ // demande si l'utilisateur veut jouer en multijoueur ou pas
         printf("Voulez vous jouer en mode 2 joueur ? si oui mettez 2, sinon mettez 1 : \n");  
         int ret = scanf("%d", &multi);
         if (ret == EOF){
+            free_tab(plateau);
             printf("\nFin du programme. Au revoir.\n");
             exit(0);
         }
