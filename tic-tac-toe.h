@@ -8,6 +8,6 @@ void afficher_plateau(char **plateau);
 bool verification_victoire(char** plateau, char symbole);
 bool verification_egalite(char** plateau);
 int tour_joueur(char** plateau);
-void **tour_bot(char** plateau);
+void tour_bot(char** plateau);
 
 #endif
