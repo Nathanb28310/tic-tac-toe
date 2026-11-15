@@ -16,3 +16,7 @@ Voici les conditions qui m'ont été imposées :
 - Le joueur peut gagner
 - L'ordinateur peut gagner
 - La partie peut être nulle
+
+Bonus que j'ai rajouté : 
+
+- rajout d'un mode multijoueur
