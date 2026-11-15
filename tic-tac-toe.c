@@ -98,7 +98,7 @@ int tour_joueur(char** plateau) // gère le tour du joueur et vérifie les entr�
         int ret = scanf("%d", &choix);
         if (ret == EOF){
             printf("\nFin du programme. Au revoir.\n");
-            return 0;
+            exit(0);
         }
         if (ret != 1) {  // vérifie si l'entrée n'est pas un entier
             printf("Erreur : Veuillez saisir un nombre entier\n");
