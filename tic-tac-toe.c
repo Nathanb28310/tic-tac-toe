@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
+#include <stdbool.h> // pour ajouter les variables booléenes
 #include <unistd.h>
 
-int size = 3;
+int size = 3; // taille du plateau
 
-void free_tab(char **plateau)
+void free_tab(char **plateau) // libération de la mémoire allouée pour le plateau
 {
     int i = 0;
 
@@ -17,7 +17,7 @@ void free_tab(char **plateau)
     free(plateau);
 }
 
-char **creation_plateau(){
+char **creation_plateau(){ // création du plateau de jeu de taille size*size et le rempli d'espace vide
     char ** plateau = malloc(size * sizeof(char*));
     int i = 0;
     int j = 0; 
@@ -35,7 +35,7 @@ char **creation_plateau(){
     return plateau;
 }
 
-void afficher_plateau(char **plateau){
+void afficher_plateau(char **plateau){ // affiche le plateau
     printf("\n");
     int i = 0;
     while (i < size)
@@ -49,25 +49,25 @@ void afficher_plateau(char **plateau){
     printf("\n");
 }
 
-bool verification_victoire(char** plateau, char symbole){
+bool verification_victoire(char** plateau, char symbole){ // vérifie les différents types de victoires
     int i = 0;
     bool victoire = false;
     while (i < size && victoire == false)
     {
-        if (plateau[i][0] == symbole && plateau[i][1] == symbole && plateau[i][2] == symbole || plateau[0][i] == symbole && plateau[1][i] == symbole && plateau[2][i] == symbole)
+        if ((plateau[i][0] == symbole && plateau[i][1] == symbole && plateau[i][2] == symbole) || (plateau[0][i] == symbole && plateau[1][i] == symbole && plateau[2][i] == symbole)) // vérifie les lignes et les colonnes
         {
             victoire = true;
         }
         i++;
     }
-    if (plateau[0][0] == symbole && plateau[1][1] == symbole && plateau[2][2] == symbole || plateau[0][2] == symbole && plateau[1][1] == symbole && plateau[2][0] == symbole)
+    if ((plateau[0][0] == symbole && plateau[1][1] == symbole && plateau[2][2] == symbole) || (plateau[0][2] == symbole && plateau[1][1] == symbole && plateau[2][0] == symbole)) // vérifie les diagonales
     {
             victoire = true;
     }
     return victoire;
 }
 
-bool verification_egalite(char** plateau){
+bool verification_egalite(char** plateau){ // vérifie si il y a égalité, en regardant si il n'y a pas de case de vide
     int i = 0;
     int j = 0;
     bool egalite = true;
@@ -87,20 +87,20 @@ bool verification_egalite(char** plateau){
     return egalite;   
 }
 
-int tour_joueur(char** plateau)
+int tour_joueur(char** plateau) // gère le tour du joueur et vérifie les entrées du joueur pour éviter la triche
 {
     int choix;
     bool verification = false;
     
     while (verification == false)
     {   
-        printf("Choisissez où jouer : \n");
+        printf("Choisissez où jouer : \n");  
         int ret = scanf("%d", &choix);
         if (ret == EOF){
             printf("\nFin du programme. Au revoir.\n");
             return 0;
         }
-        if (ret != 1) {
+        if (ret != 1) {  // vérifie si l'entrée n'est pas un entier
             printf("Erreur : Veuillez saisir un nombre entier\n");
             int c = getchar();
             while (c != '\n' && c != EOF) {
@@ -109,28 +109,28 @@ int tour_joueur(char** plateau)
             continue;
         }
 
-        if (choix < 0 || choix > 8) {
+        if (choix < 0 || choix > 8) { // vérification des limites du plateau (0 à 8)
             printf("Position invalide (doit être entre 0 et 8)\n");
             continue;
         }
 
         int ligne = choix / 3;
         int colonne = choix % 3;
-        if (plateau[ligne][colonne] == 'X' || plateau[ligne][colonne] == 'O')
+        if (plateau[ligne][colonne] == 'X' || plateau[ligne][colonne] == 'O') // vérifie si la case est déjà prise
         {
             printf("Cette case est déjà occupée\n");
             continue;
         }
-        plateau[ligne][colonne] = 'X';
+        plateau[ligne][colonne] = 'X'; // place le symbole
         verification = true;
     }
-    sleep(1);
+    sleep(1); // pause d'une seconde pour l'affichage
     afficher_plateau(plateau);
     return 0;
     }
 
 
-void **tour_bot(char** plateau){
+void tour_bot(char** plateau){ // gère le tour de l'ordinateur en plaçant son pion sur la première case vide trouvée
     int i = 0;
     int j = 0;
     bool choix = false;
@@ -145,6 +145,6 @@ void **tour_bot(char** plateau){
         }
         i++;
     }
-    system("clear");
+    system("clear"); // permet de rafraichir le terminal
     afficher_plateau(plateau);
 }

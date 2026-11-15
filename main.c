@@ -6,28 +6,28 @@
 
 int main(){
     char **plateau = creation_plateau();
-    int tour = 0;
+    int tour = 0; // 0 pour le joueur ('X') et 1 pour l'ordinateur ('O')
     bool victoire = false;
     bool egalite = false;
     afficher_plateau(plateau);
-    while (victoire == false && egalite == false)
+    while (victoire == false && egalite == false) // tant qu'il n'y a ni victoire, ni égalité on continue la boucle de jeu
     {   
-        if (tour == 0)
+        if (tour == 0) // tour du joueur
         {
             tour_joueur(plateau);
             victoire = verification_victoire(plateau, 'X');
-            tour = 1;
+            tour = 1; // donne le tour à l'ordinateur
         }
-        else{
+        else{ // tour de l'ordinateur
             tour_bot(plateau);
             victoire = verification_victoire(plateau, 'O');
-            tour = 0;
+            tour = 0; // donne le tour au joueur
         }
         egalite = verification_egalite(plateau);
-        sleep(1);
+        sleep(1); // fais une pause de une seconde pour l'affichage
     }
-    system("clear");
-    if (victoire == true && tour == 1)
+    system("clear"); // permet de rafraichir le terminal
+    if (victoire == true && tour == 1) // affichage des messages de fin en fonction du résultat
     {
         printf("C'est gagné!\n");
     }
@@ -39,6 +39,6 @@ int main(){
     {
         printf("Match nul!\n");
     }
-    free_tab(plateau);
+    free_tab(plateau); // libération de la mémoire allouée pour le plateau
     return 0;
 }
